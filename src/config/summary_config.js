@@ -20,5 +20,6 @@ export const SUMMARY_HEADERS = [
   "Cost per share",
   "Yield on Cost",
   "Profit/Loss",
+  "Portfolio %",
   "JSON"
 ];

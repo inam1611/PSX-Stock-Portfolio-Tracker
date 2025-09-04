@@ -222,6 +222,101 @@
 
 // export const useSummary = () => useContext(SummaryContext);
 
+// import React, { createContext, useState, useContext } from "react";
+// import { extractNameAndXD, calculatePortfolio, calculateYieldOnCost } from "../utils/SummaryUtils.jsx";
+
+// const SummaryContext = createContext();
+
+// export const SummaryProvider = ({ children }) => {
+//   const [summaries, setSummaries] = useState([]);
+
+//   const fetchTransactions = async () => {
+//     try {
+//       const rows = await window.electronAPI.readTransactions();
+
+//       // Group transactions by stock symbol
+//       const stockGroups = {};
+//       rows.forEach((txn) => {
+//         const symbol = (txn["Stock Symbol"] || txn.stockName || "")
+//           .toUpperCase()
+//           .trim();
+//         if (!symbol) return;
+//         if (!stockGroups[symbol]) stockGroups[symbol] = [];
+//         stockGroups[symbol].push(txn);
+//       });
+
+//       // Prepare summary data
+//       const summaryData = await Promise.all(
+//         Object.entries(stockGroups).map(async ([symbol, txns]) => {
+//           // Sort by date
+//           const sorted = txns.sort(
+//             (a, b) => new Date(a.Date || a.date) - new Date(b.Date || b.date)
+//           );
+
+//           // ✅ Delegate math to utils
+//           const { cumulativeUnits, cumulativeCost, avgCost } =
+//             calculatePortfolio(symbol, sorted);
+
+//           // Fetch stock info
+//           try {
+//             const response = await fetch(
+//               `http://localhost:3001/api/stock-info/${symbol}`
+//             );
+//             const data = await response.json();
+//             const { name, xdxb } = extractNameAndXD(data.name);
+
+//             return {
+//               stockTicker: symbol,
+//               investmentCategory: "Equity",
+//               name,
+//               xdxb,
+//               industry: data.industry || "",
+//               shares: cumulativeUnits,
+//               cumulativeCost,
+//               avgCost,
+//               lastPrice: data.closingPrice,
+//               changeValue: data.changeValue,
+//               changePercent: data.changePercent,
+//               yieldOnCost: calculateYieldOnCost(data.closingPrice, avgCost),
+//               portfolioPercent: 0,
+//               rawJson: data,
+//             };
+//           } catch (err) {
+//             console.error(`❌ Error fetching stock info for ${symbol}:`, err);
+//             return {
+//               stockTicker: symbol,
+//               investmentCategory: "Equity",
+//               name: "",
+//               xdxb: "",
+//               industry: "",
+//               shares: cumulativeUnits,
+//               cumulativeCost,
+//               avgCost,
+//               lastPrice: null,
+//               changeValue: null,
+//               changePercent: "",
+//               portfolioPercent: 0,
+//               rawJson: {},
+//             };
+//           }
+//         })
+//       );
+
+//       setSummaries(summaryData);
+//     } catch (err) {
+//       console.error("❌ Failed to fetch transactions:", err);
+//     }
+//   };
+
+//   return (
+//     <SummaryContext.Provider value={{ summaries, fetchTransactions }}>
+//       {children}
+//     </SummaryContext.Provider>
+//   );
+// };
+
+// export const useSummary = () => useContext(SummaryContext);
+
 import React, { createContext, useState, useContext } from "react";
 import { extractNameAndXD, calculatePortfolio, calculateYieldOnCost } from "../utils/SummaryUtils.jsx";
 
@@ -246,7 +341,7 @@ export const SummaryProvider = ({ children }) => {
       });
 
       // Prepare summary data
-      const summaryData = await Promise.all(
+      let summaryData = await Promise.all(
         Object.entries(stockGroups).map(async ([symbol, txns]) => {
           // Sort by date
           const sorted = txns.sort(
@@ -278,7 +373,7 @@ export const SummaryProvider = ({ children }) => {
               changeValue: data.changeValue,
               changePercent: data.changePercent,
               yieldOnCost: calculateYieldOnCost(data.closingPrice, avgCost),
-              portfolioPercent: 0,
+              portfolioPercent: 0, // will update next
               rawJson: data,
             };
           } catch (err) {
@@ -295,12 +390,27 @@ export const SummaryProvider = ({ children }) => {
               lastPrice: null,
               changeValue: null,
               changePercent: "",
+              yieldOnCost: null,
               portfolioPercent: 0,
               rawJson: {},
             };
           }
         })
       );
+
+      // ✅ Calculate Portfolio % based on cumulativeCost
+      const totalInvested = summaryData.reduce(
+        (sum, item) => sum + (item.cumulativeCost || 0),
+        0
+      );
+
+      summaryData = summaryData.map((item) => ({
+        ...item,
+        portfolioPercent:
+          totalInvested > 0
+            ? (item.cumulativeCost / totalInvested) * 100
+            : 0,
+      }));
 
       setSummaries(summaryData);
     } catch (err) {
