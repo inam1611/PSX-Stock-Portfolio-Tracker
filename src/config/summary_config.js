@@ -16,6 +16,7 @@ export const SUMMARY_HEADERS = [
   "Industry",
   "Shares",
   "Cumulative Cost",
+  "Avg Cost",
   "Last Price",
   "JSON"
 ];

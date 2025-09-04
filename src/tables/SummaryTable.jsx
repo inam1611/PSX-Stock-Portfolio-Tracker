@@ -558,7 +558,7 @@ const formatCurrency = (value) => {
     style: "currency",
     currency: "PKR",
     minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 2,
   }).format(value);
 };
 
