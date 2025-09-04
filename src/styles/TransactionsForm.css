@@ -1,0 +1,106 @@
+.transactions-container {
+  max-width: 800px;   /* wider form */
+  width: 90%;         /* responsive */
+  margin: 2rem auto;  /* top margin smaller to allow more content above */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* default background, overridden by dark mode */
+  transition: background-color 0.3s ease;
+}
+
+/* Heading */
+.form-heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* Form layout */
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Each field */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+.transaction-form input,
+.transaction-form select {
+  width: 100%;          /* full width like other inputs */
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Focus */
+.transaction-form input:focus,
+.transaction-form select:focus {
+  border-color: #00aa77;
+}
+
+/* Dark mode */
+body.dark .transactions-container {
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+body.dark .transaction-form input,
+body.dark .transaction-form select {
+  background-color: #111;
+  color: #fff;
+  border-color: #00aa77;
+}
+
+body.dark .transaction-form input:focus,
+body.dark .transaction-form select:focus {
+  border-color: #00ff99;
+}
+
+/* Light mode */
+body.light .transactions-container {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light .transaction-form input,
+body.light .transaction-form select {
+  background-color: #fff;
+  color: #000;
+  border-color: #008f5a;
+}
+
+body.light .transaction-form input:focus,
+body.light .transaction-form select:focus {
+  border-color: #006644;
+}
+
+/* Button */
+.add-btn {
+  background: #00aa77;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background: #008f5a;
+}

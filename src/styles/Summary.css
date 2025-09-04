@@ -1,0 +1,126 @@
+.summary-page {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Header */
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+
+.summary-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Table container */
+.summary-table-container {
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+/* Table */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.summary-table th {
+  background-color: #00aa77;
+  color: #fff;
+}
+
+/* Dark mode */
+body.dark .summary-table-container {
+  background-color: #1e1e1e;
+}
+
+body.dark .summary-table th {
+  background-color: #00ff99;
+  color: #000;
+}
+
+body.dark .summary-table td {
+  color: #fff;
+}
+
+/* Light mode */
+body.light .summary-table-container {
+  background-color: #f8f8f8;
+}
+
+body.light .summary-table th {
+  background-color: #008f5a;
+  color: #fff;
+}
+
+body.light .summary-table td {
+  color: #000;
+}
+
+/* Refresh button */
+.refresh-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.refresh-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Light mode button */
+body.light .refresh-button svg {
+  color: #008f5a;
+}
+
+body.light .refresh-button:hover:not(:disabled) svg {
+  color: #00aa77;
+  transform: scale(1.15);
+}
+
+/* Dark mode button */
+body.dark .refresh-button svg {
+  color: #00ff99;
+}
+
+body.dark .refresh-button:hover:not(:disabled) svg {
+  color: #00cc88;
+  transform: scale(1.15);
+}
+
+/* Spin animation */
+.spin {
+  animation: spin 1s linear infinite;
+  border-radius: 50%;
+  transform-origin: center; /* ensures smooth rotation */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

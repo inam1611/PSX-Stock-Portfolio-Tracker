@@ -1,0 +1,123 @@
+/* === Navbar === */
+.navbar {
+  width: 100%;
+  padding: 1rem 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Navbar left section */
+.nav-left {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+
+/* Center section for nav links */
+.nav-center {
+  flex: 1; /* fills the gap between left + right */
+  display: flex;
+  justify-content: center; /* keeps links in the middle */
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.nav-links a {
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Logo text */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* === Theme Toggle Button === */
+.theme-toggle {
+  margin-right: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode */
+body.dark {
+  background-color: #242424;
+  color: #ffffff;
+}
+body.dark .navbar {
+  background-color: #000000;
+  border-bottom: 1px solid #00ff99;
+}
+body.dark .logo-text {
+  color: #00ff99;
+  text-shadow: 0 0 8px #00ff99, 0 0 16px #00ff99;
+}
+body.dark .theme-toggle {
+  background: #111;
+  color: #00ff99;
+  border-color: #00ff99;
+}
+body.dark .theme-toggle:hover {
+  background: #00ff99;
+  color: #000;
+}
+body.dark .nav-links a {
+  color: #00cc66;
+}
+body.dark .nav-links a:hover {
+  color: #00ff99;
+}
+body.dark .nav-links a.active {
+  color: #00ffcc;
+  text-decoration: underline;
+}
+
+/* Light mode */
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+body.light .navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #008f5a;
+}
+body.light .logo-text {
+  color: #006644;
+  text-shadow: none;
+}
+body.light .theme-toggle {
+  background: #e8fdf4;
+  color: #006644;
+  border-color: #008f5a;
+}
+body.light .theme-toggle:hover {
+  background: #008f5a;
+  color: #fff;
+}
+body.light .nav-links a {
+  color: #006644;
+}
+body.light .nav-links a:hover {
+  color: #008f5a;
+}
+body.light .nav-links a.active {
+  color: #00aa77;
+  text-decoration: underline;
+}

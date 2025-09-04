@@ -1,0 +1,188 @@
+/* Container */
+/* Container */
+.transaction-table-container {
+  width: 95%;        /* spans most of the page */
+  max-width: 1400px; /* optional limit */
+  margin: 2rem 0;    /* top/bottom margin only → no auto centering */
+  overflow: visible;
+}
+
+
+/* Table layout */
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* dynamic column widths */
+}
+
+/* Header and cells */
+.transaction-table th,
+.transaction-table td {
+  border: 1px solid #ccc;
+  padding: 0.6rem 0.8rem;
+  text-align: center;
+  white-space: nowrap; /* prevent breaking words */
+}
+
+/* Header styling */
+.transaction-table th {
+  font-weight: bold;
+  background-color: #f2f2f2;
+  position: relative; /* for dropdown positioning */
+}
+
+/* Hover effect */
+.transaction-table tbody tr:hover {
+  background-color: rgba(0, 170, 119, 0.1);
+}
+
+/* Type column colors */
+.type-buy,
+.type-dividend {
+  color: #008f5a !important;
+  font-weight: bold;
+}
+
+.type-sell {
+  color: #ff4d4d !important;
+  font-weight: bold;
+}
+
+/* Dark mode */
+body.dark .type-buy,
+body.dark .type-dividend {
+  color: #00ff99 !important;
+}
+
+body.dark .type-sell {
+  color: #ff4d4d !important;
+}
+
+body.dark .transaction-table th {
+  background-color: #111;
+  color: #f0f3f2ff;
+  border-color: #00ff99;
+}
+
+body.dark .transaction-table td {
+  color: #ffffff;
+  border-color: #00ff99;
+}
+
+/* Light mode */
+body.light .type-buy,
+body.light .type-dividend {
+  color: #008f5a !important;
+}
+
+body.light .type-sell {
+  color: #ff4d4d !important;
+}
+
+body.light .transaction-table th {
+  background-color: #e8fdf4;
+  color: #006644;
+  border-color: #008f5a;
+}
+
+body.light .transaction-table td {
+  color: #006644;
+  border-color: #008f5a;
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #f89797ff;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #fc4040ff;
+}
+
+/* Responsive text for smaller screens */
+@media (max-width: 768px) {
+  .transaction-table th,
+  .transaction-table td {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ------------------- FILTER DROPDOWN STYLES ------------------- */
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0 3px;
+  color: inherit;
+}
+
+.filter-btn:hover {
+  color: #008f5a;
+}
+
+/* Dropdown menu */
+.filter-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 160px;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  padding: 0.5rem;
+}
+
+/* Dropdown items */
+.filter-menu label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-menu label input {
+  margin-right: 0.3rem;
+}
+
+/* Scrollbar */
+.filter-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* Light mode dropdown */
+body.light .filter-menu {
+  background-color: #ffffff;
+  color: #000000; /* black text */
+  border-color: #008f5a;
+}
+
+/* Dark mode dropdown */
+body.dark .filter-menu {
+  background-color: #222;   /* ✅ dark background */
+  color: #f0f3f2ff;         /* ✅ light text */
+  border-color: #00ff99;
+}

@@ -1,0 +1,187 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+/* ######################################################################################################################## */
+/* === Global Theme Styles === */
+body.dark {
+  background-color: #242424; /* Vite's default dark */
+  color: #ffffff;
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Reset + layout */
+body {
+  padding-top: 64px; /* ensure content is below fixed navbar */
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* === Navbar === */
+.navbar {
+  width: 100%;
+  padding: 1rem 0.7rem;
+  display: flex;
+  justify-content: space-between; /* <-- left + right layout */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Logo text */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Dark mode: neon green glow */
+body.dark .logo-text {
+  color: #00ff99; /* neon green */
+  text-shadow: 0 0 8px #00ff99, 0 0 16px #00ff99;
+}
+
+/* Light mode: deep green (no glow) */
+body.light .logo-text {
+  color: #006644; /* deep green */
+  text-shadow: none;
+}
+
+
+
+/* Dark mode navbar */
+body.dark .navbar {
+  background-color: #000000;
+  border-bottom: 1px solid #00ff99; /* neon green accent */
+}
+
+/* Light mode navbar */
+body.light .navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #008f5a; /* darker green accent */
+}
+
+/* === Theme Toggle Button === */
+.theme-toggle {
+  margin-right: 1.5rem; /* push it left a bit from screen edge */
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+
+/* Dark mode button */
+body.dark .theme-toggle {
+  background: #111;         /* near black */
+  color: #00ff99;           /* neon green */
+  border-color: #00ff99;
+}
+
+body.dark .theme-toggle:hover {
+  background: #00ff99;
+  color: #000;
+}
+
+/* Light mode button */
+body.light .theme-toggle {
+  background: #e8fdf4; /* pale green */
+  color: #006644;
+  border-color: #008f5a;
+}
+
+body.light .theme-toggle:hover {
+  background: #008f5a;
+  color: #fff;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 1.5rem;
+}
+/* Navbar links */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Dark mode links */
+body.dark .nav-links a {
+  color: #00cc66; /* softer green */
+}
+body.dark .nav-links a:hover {
+  color: #00ff99; /* brighter green */
+}
+body.dark .nav-links a.active {
+  color: #00ffcc; /* neon green for active */
+  text-decoration: underline;
+}
+
+/* Light mode links */
+body.light .nav-links a {
+  color: #006644; /* deep green */
+}
+body.light .nav-links a:hover {
+  color: #008f5a; /* medium green */
+}
+body.light .nav-links a.active {
+  color: #00aa77; /* brighter green */
+  text-decoration: underline;
+}
