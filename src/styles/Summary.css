@@ -1,7 +1,9 @@
+/* === Summary Page === */
 .summary-page {
-  max-width: 1000px;
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;             /* take full width for scrolling */
+  max-width: 100%;
+  margin: 0;
+  background-color: inherit; /* respect dark/light theme */
 }
 
 /* Header */
@@ -20,56 +22,24 @@
 
 /* Table container */
 .summary-table-container {
+  width: max-content;       /* allow table to expand horizontally */
+  margin: 2rem 0;           /* no auto centering, left-aligned */
   border-radius: 10px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
+  overflow-x: auto;         /* horizontal scroll if table too wide */
   padding: 1rem;
-}
-
-/* Table */
-.summary-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.summary-table th,
-.summary-table td {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  text-align: left;
-}
-
-.summary-table th {
-  background-color: #00aa77;
-  color: #fff;
-}
-
-/* Dark mode */
-body.dark .summary-table-container {
-  background-color: #1e1e1e;
-}
-
-body.dark .summary-table th {
-  background-color: #00ff99;
-  color: #000;
-}
-
-body.dark .summary-table td {
-  color: #fff;
+  border: black;
+  border: 10px solid #000000;  /* 2px solid black */
 }
 
 /* Light mode */
 body.light .summary-table-container {
-  background-color: #f8f8f8;
+  background-color: #ffffff; /* solid white */
 }
 
-body.light .summary-table th {
-  background-color: #008f5a;
-  color: #fff;
-}
-
-body.light .summary-table td {
-  color: #000;
+/* Dark mode */
+body.dark .summary-table-container {
+  background-color: #1e1e1e; /* solid dark */
 }
 
 /* Refresh button */
@@ -113,7 +83,7 @@ body.dark .refresh-button:hover:not(:disabled) svg {
 .spin {
   animation: spin 1s linear infinite;
   border-radius: 50%;
-  transform-origin: center; /* ensures smooth rotation */
+  transform-origin: center;
 }
 
 @keyframes spin {

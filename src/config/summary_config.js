@@ -14,9 +14,11 @@ export const SUMMARY_HEADERS = [
   "Name",
   "XD/XB",
   "Industry",
+  "Last Price",
   "Shares",
   "Cumulative Cost",
-  "Avg Cost",
-  "Last Price",
+  "Cost per share",
+  "Yield on Cost",
+  "Profit/Loss",
   "JSON"
 ];

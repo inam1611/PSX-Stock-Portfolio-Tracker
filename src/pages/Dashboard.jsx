@@ -1,5 +1,10 @@
-// src/pages/Dashboard.jsx
+import React, { useState } from "react";
 export default function Dashboard() {
-  return <h2>Dashboard Page</h2>;
+  return (
+    <div>
+      <h2>Dashboard Page</h2>
+    </div>
+  );
 }
+
 

@@ -1,11 +1,7 @@
-.summary-table-container {
-  width: 95%;
-  margin: 2rem auto;
-  overflow: visible;
-}
-
+/* === Summary Table === */
 .summary-table {
-  width: 100%;
+  width: max-content;         /* table controls horizontal scroll */
+  min-width: 100%;            /* ensure small tables fill container */
   border-collapse: collapse;
   table-layout: auto;
 }
@@ -15,16 +11,20 @@
   border: 1px solid #ccc;
   padding: 0.6rem 0.8rem;
   text-align: center;
-  white-space: nowrap;
+  white-space: nowrap;        /* prevent wrapping */
 }
 
 /* Header styling */
 .summary-table th {
   font-weight: bold;
-  background-color: #f2f2f2;
 }
 
-/* Type colors */
+/* Hover effect */
+.summary-table tbody tr:hover {
+  background-color: rgba(0, 170, 119, 0.1);
+}
+
+/* Transaction type colors */
 .type-buy,
 .type-dividend {
   color: #008f5a;
@@ -34,11 +34,6 @@
 .type-sell {
   color: #ff4d4d;
   font-weight: bold;
-}
-
-/* Hover effect */
-.summary-table tbody tr:hover {
-  background-color: rgba(0, 170, 119, 0.1);
 }
 
 /* Dark mode */
@@ -65,7 +60,7 @@ body.light .summary-table td {
   border-color: #008f5a;
 }
 
-/* Responsive text for smaller screens */
+/* Responsive text */
 @media (max-width: 768px) {
   .summary-table th,
   .summary-table td {
