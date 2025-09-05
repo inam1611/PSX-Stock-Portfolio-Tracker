@@ -22,5 +22,6 @@ export const SUMMARY_HEADERS = [
   "Unrealized Gain/Loss",
   "Portfolio %",
   "Realized Gain/Loss",
+  "Dividend Income",
   // "JSON"
 ];
