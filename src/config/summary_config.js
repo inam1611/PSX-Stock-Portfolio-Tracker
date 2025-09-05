@@ -9,7 +9,7 @@
 // ];
 
 export const SUMMARY_HEADERS = [
-  "Investment Category",
+  // "Investment Category",
   "Stock Ticker",
   "Name",
   "XD/XB",
@@ -18,8 +18,9 @@ export const SUMMARY_HEADERS = [
   "Shares",
   "Cumulative Cost",
   "Cost per share",
-  "Yield on Cost",
-  "Profit/Loss",
+  "Yield  on Cost",
+  "Unrealized Gain/Loss",
   "Portfolio %",
-  "JSON"
+  "Realized Gain/Loss",
+  // "JSON"
 ];
