@@ -1,0 +1,73 @@
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
+
+/* ===== Titles ===== */
+.dashboard-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== Charts Layout ===== */
+.charts-row,
+.transaction-charts {
+  display: flex;
+  flex-wrap: wrap; /* ✅ responsive */
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.chart-container {
+  flex: 1;
+  min-width: 320px; /* ✅ prevents tiny charts */
+  height: 420px; /* ✅ a bit taller for legends/labels */
+  border-radius: 12px;
+  padding: 20px; /* ✅ extra padding so labels don’t cut off */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* ✅ keeps chart inside */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ===== Chart Titles ===== */
+.chart-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ===== Light Mode ===== */
+body.light .chart-container {
+  background: #ffffff;
+  color: #222;
+}
+body.light .chart-title {
+  color: #333;
+}
+
+/* ===== Dark Mode ===== */
+body.dark .chart-container {
+  background: #1e1e1e;
+  color: #f1f1f1;
+}
+body.dark .chart-title {
+  color: #ddd;
+}
+.chart-container .recharts-wrapper {
+  margin-bottom: 40px; /* pushes chart content slightly up from x-axis */
+}
+
+.chart-container .recharts-cartesian-axis-tick-value {
+  font-size: 12px; /* optional: make x-axis labels smaller for clarity */
+}

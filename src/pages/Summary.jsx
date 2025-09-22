@@ -164,13 +164,149 @@
 // export default Summary;
 
 
+// import React, { useEffect, useState } from "react";
+// import AutorenewIcon from "@mui/icons-material/Autorenew";
+// import { styled } from "@mui/material/styles";
+// import clsx from "clsx";
+// import SummaryTable from "../tables/SummaryTable";
+// import { useSummary } from "../context/SummaryContext";
+// // import "../styles/SummaryTable.css";
+// import "../styles/Summary.css";
+// import Draggable from "react-draggable";
+
+// // Styled refresh icon with spin animation
+// const RefreshIcon = styled(AutorenewIcon)(({ theme }) => ({
+//   cursor: "pointer",
+//   marginLeft: "1rem",
+//   "&.spin": {
+//     animation: "spin 1s linear",
+//     pointerEvents: "none",
+//   },
+//   "@keyframes spin": {
+//     "0%": { transform: "rotate(0deg)" },
+//     "100%": { transform: "rotate(360deg)" },
+//   },
+// }));
+
+// function Summary() {
+//   const { summaries, fetchTransactions } = useSummary();
+//   const [spinning, setSpinning] = useState(false);
+
+//   const handleRefresh = async () => {
+//     setSpinning(true);
+//     await fetchTransactions();
+//     setTimeout(() => setSpinning(false), 1000);
+//   };
+
+//   // Fetch only once when summaries are empty
+//   useEffect(() => {
+//     if (summaries.length === 0) {
+//       fetchTransactions();
+//     }
+//   }, []);
+
+//   return (
+//     <div className="summary-page">
+//       <div className="summary-header">
+//         <h1 className="summary-title">Summary</h1>
+//         <button
+//           className="refresh-button"
+//           onClick={handleRefresh}
+//           disabled={spinning}
+//           title="Refresh"
+//         >
+//           <RefreshIcon className={clsx({ spin: spinning })} fontSize="medium" />
+//         </button>
+//       </div>
+
+//       <SummaryTable summaries={summaries} />
+//     </div>
+//   );
+// }
+
+// export default Summary;
+
+// import React, { useEffect, useState } from "react";
+// import AutorenewIcon from "@mui/icons-material/Autorenew";
+// import { styled } from "@mui/material/styles";
+// import clsx from "clsx";
+// import SummaryTable from "../tables/SummaryTable";
+// import { useSummary } from "../context/SummaryContext";
+// import "../styles/Summary.css";
+// import Draggable from "react-draggable";
+
+// // Styled refresh icon with spin animation
+// const RefreshIcon = styled(AutorenewIcon)(({ theme }) => ({
+//   cursor: "pointer",
+//   marginLeft: "1rem",
+//   "&.spin": {
+//     animation: "spin 1s linear",
+//     pointerEvents: "none",
+//   },
+//   "@keyframes spin": {
+//     "0%": { transform: "rotate(0deg)" },
+//     "100%": { transform: "rotate(360deg)" },
+//   },
+// }));
+
+// function Summary() {
+//   const { summaries, fetchTransactions } = useSummary();
+//   const [spinning, setSpinning] = useState(false);
+
+//   const handleRefresh = async () => {
+//     setSpinning(true);
+//     await fetchTransactions();
+//     setTimeout(() => setSpinning(false), 1000);
+//   };
+
+//   // Fetch only once when summaries are empty
+//   useEffect(() => {
+//     if (summaries.length === 0) {
+//       fetchTransactions();
+//     }
+//   }, []);
+
+//   // 🔹 Auto-save summaries to Excel after data loads
+//   useEffect(() => {
+//     if (summaries.length > 0) {
+//       const timer = setTimeout(() => {
+//         // Call Electron IPC to save summaries into summary.xlsx
+//         window.electronAPI.saveSummaries(summaries);
+//       }, 5000); // wait 3 seconds
+
+//       return () => clearTimeout(timer);
+//     }
+//   }, [summaries]);
+
+//   return (
+//     <div className="summary-page">
+//       <div className="summary-header">
+//         <h1 className="summary-title">Summary</h1>
+//         <button
+//           className="refresh-button"
+//           onClick={handleRefresh}
+//           disabled={spinning}
+//           title="Refresh"
+//         >
+//           <RefreshIcon className={clsx({ spin: spinning })} fontSize="medium" />
+//         </button>
+//       </div>
+
+//       <SummaryTable summaries={summaries} />
+//     </div>
+//   );
+// }
+
+// export default Summary;
+
 import React, { useEffect, useState } from "react";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import { styled } from "@mui/material/styles";
 import clsx from "clsx";
 import SummaryTable from "../tables/SummaryTable";
 import { useSummary } from "../context/SummaryContext";
-import "../styles/SummaryTable.css";
+import "../styles/Summary.css";
+import Draggable from "react-draggable";
 
 // Styled refresh icon with spin animation
 const RefreshIcon = styled(AutorenewIcon)(({ theme }) => ({
@@ -193,6 +329,12 @@ function Summary() {
   const handleRefresh = async () => {
     setSpinning(true);
     await fetchTransactions();
+
+    // 🔹 After fetching, update summary.xlsx with latest data
+    if (summaries.length > 0) {
+      window.electronAPI.saveSummaries(summaries);
+    }
+
     setTimeout(() => setSpinning(false), 1000);
   };
 
@@ -203,16 +345,28 @@ function Summary() {
     }
   }, []);
 
+  // 🔹 Auto-save summaries when first loaded
+  useEffect(() => {
+    if (summaries.length > 0) {
+      const timer = setTimeout(() => {
+        window.electronAPI.saveSummaries(summaries);
+      }, 3000); // wait 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [summaries]);
+
   return (
     <div className="summary-page">
       <div className="summary-header">
         <h1 className="summary-title">Summary</h1>
-        <RefreshIcon
-          className={clsx({ spin: spinning })}
+        <button
+          className="refresh-button"
           onClick={handleRefresh}
-          fontSize="medium"
-          titleAccess="Refresh"
-        />
+          disabled={spinning}
+          title="Refresh"
+        >
+          <RefreshIcon className={clsx({ spin: spinning })} fontSize="medium" />
+        </button>
       </div>
 
       <SummaryTable summaries={summaries} />
