@@ -28,7 +28,7 @@
 .chart-container {
   flex: 1;
   min-width: 320px; /* ✅ prevents tiny charts */
-  height: 420px; /* ✅ a bit taller for legends/labels */
+  height: 450px; /* ✅ a bit taller for legends/labels */
   border-radius: 12px;
   padding: 20px; /* ✅ extra padding so labels don’t cut off */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,9 @@ body.dark .chart-title {
 .chart-container .recharts-wrapper {
   margin-bottom: 40px; /* pushes chart content slightly up from x-axis */
 }
-
+.chart-container .recharts-legend-item legend-item-0 {
+  margin-top: 40px; /* pushes chart content slightly up from x-axis */
+}
 .chart-container .recharts-cartesian-axis-tick-value {
   font-size: 12px; /* optional: make x-axis labels smaller for clarity */
 }

@@ -361,23 +361,23 @@ export const calculatePortfolio = (symbol, transactions) => {
     }
     // Dividends don’t change units or cost
 
-    console.log("🔎 Txn detail:", symbol, {
-      type,
-      units,
-      pricePerShare,
-      fees,
-      cumulativeUnits,
-      cumulativeCost,
-    });
+    // console.log("🔎 Txn detail:", symbol, {
+    //   type,
+    //   units,
+    //   pricePerShare,
+    //   fees,
+    //   cumulativeUnits,
+    //   cumulativeCost,
+    // });
   });
 
   const avgCost = cumulativeUnits > 0 ? cumulativeCost / cumulativeUnits : 0;
 
-  console.log("📊 Portfolio calc:", symbol, {
-    cumulativeUnits,
-    cumulativeCost,
-    avgCost,
-  });
+  // console.log("📊 Portfolio calc:", symbol, {
+  //   cumulativeUnits,
+  //   cumulativeCost,
+  //   avgCost,
+  // });
 
   return { cumulativeUnits, cumulativeCost, avgCost };
 };
@@ -398,13 +398,13 @@ export const calculateProfitLoss = (lastPrice, avgCost, shares) => {
 export const renderProfitLoss = (lastPrice, avgCost, shares) => {
   const profit = calculateProfitLoss(lastPrice, avgCost, shares);
 
-  console.log("💰 renderProfitLoss input:", {
-    lastPrice,
-    avgCost,
-    shares,
-    profit,
-    type: typeof profit,
-  });
+  // console.log("💰 renderProfitLoss input:", {
+  //   lastPrice,
+  //   avgCost,
+  //   shares,
+  //   profit,
+  //   type: typeof profit,
+  // });
 
   let color = "grey";
   if (profit > 0) color = "green";
